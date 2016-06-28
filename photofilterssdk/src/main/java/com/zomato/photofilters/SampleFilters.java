@@ -2,32 +2,35 @@ package com.zomato.photofilters;
 
 import com.zomato.photofilters.geometry.Point;
 import com.zomato.photofilters.imageprocessors.Filter;
-import com.zomato.photofilters.imageprocessors.subfilters.BrightnessSubFilter;
-import com.zomato.photofilters.imageprocessors.subfilters.ContrastSubFilter;
-import com.zomato.photofilters.imageprocessors.subfilters.ToneCurveSubFilter;
+import com.zomato.photofilters.imageprocessors.subfilters.BrightnessSubfilter;
+import com.zomato.photofilters.imageprocessors.subfilters.ContrastSubfilter;
+import com.zomato.photofilters.imageprocessors.subfilters.ToneCurveSubfilter;
 
 /**
  * @author Varun on 01/07/15.
  */
-public class SampleFilters {
+public final class SampleFilters {
 
-    public static Filter getStarLitFilter(){
-        Point[] RGBKnots;
-        RGBKnots = new Point[8];
-        RGBKnots[0] = new Point(0, 0);
-        RGBKnots[1] = new Point(34, 6);
-        RGBKnots[2] = new Point(69, 23);
-        RGBKnots[3] = new Point(100, 58);
-        RGBKnots[4] = new Point(150, 154);
-        RGBKnots[5] = new Point(176, 196);
-        RGBKnots[6] = new Point(207, 233);
-        RGBKnots[7] = new Point(255, 255);
+    private SampleFilters() {
+    }
+
+    public static Filter getStarLitFilter() {
+        Point[] rgbKnots;
+        rgbKnots = new Point[8];
+        rgbKnots[0] = new Point(0, 0);
+        rgbKnots[1] = new Point(34, 6);
+        rgbKnots[2] = new Point(69, 23);
+        rgbKnots[3] = new Point(100, 58);
+        rgbKnots[4] = new Point(150, 154);
+        rgbKnots[5] = new Point(176, 196);
+        rgbKnots[6] = new Point(207, 233);
+        rgbKnots[7] = new Point(255, 255);
         Filter filter = new Filter();
-        filter.addSubFilter(new ToneCurveSubFilter(RGBKnots, null, null, null));
+        filter.addSubFilter(new ToneCurveSubfilter(rgbKnots, null, null, null));
         return filter;
     }
 
-    public static Filter getBlueMessFilter(){
+    public static Filter getBlueMessFilter() {
         Point[] redKnots;
         redKnots = new Point[8];
         redKnots[0] = new Point(0, 0);
@@ -39,21 +42,24 @@ public class SampleFilters {
         redKnots[6] = new Point(225, 242);
         redKnots[7] = new Point(255, 255);
         Filter filter = new Filter();
-        filter.addSubFilter(new ToneCurveSubFilter(null, redKnots, null, null));
-        filter.addSubFilter(new BrightnessSubFilter(30));
-        filter.addSubFilter(new ContrastSubFilter(1f));
+        filter.addSubFilter(new ToneCurveSubfilter(null, redKnots, null, null));
+        filter.addSubFilter(new BrightnessSubfilter(30));
+        filter.addSubFilter(new ContrastSubfilter(1f));
         return filter;
     }
 
-    public static Filter getAweStruckVibeFilter(){
-        Point[] RGBKnots, redKnots, greenKnots, blueKnots;
+    public static Filter getAweStruckVibeFilter() {
+        Point[] rgbKnots;
+        Point[] redKnots;
+        Point[] greenKnots;
+        Point[] blueKnots;
 
-        RGBKnots = new Point[5];
-        RGBKnots[0] = new Point(0, 0);
-        RGBKnots[1] = new Point(80, 43);
-        RGBKnots[2] = new Point(149, 102);
-        RGBKnots[3] = new Point(201, 173);
-        RGBKnots[4] = new Point(255, 255);
+        rgbKnots = new Point[5];
+        rgbKnots[0] = new Point(0, 0);
+        rgbKnots[1] = new Point(80, 43);
+        rgbKnots[2] = new Point(149, 102);
+        rgbKnots[3] = new Point(201, 173);
+        rgbKnots[4] = new Point(255, 255);
 
         redKnots = new Point[5];
         redKnots[0] = new Point(0, 0);
@@ -82,11 +88,11 @@ public class SampleFilters {
         blueKnots[6] = new Point(255, 255);
 
         Filter filter = new Filter();
-        filter.addSubFilter(new ToneCurveSubFilter(RGBKnots, redKnots, greenKnots, blueKnots));
+        filter.addSubFilter(new ToneCurveSubfilter(rgbKnots, redKnots, greenKnots, blueKnots));
         return filter;
     }
 
-    public static Filter getLimeStutterFilter(){
+    public static Filter getLimeStutterFilter() {
         Point[] blueKnots;
         blueKnots = new Point[3];
         blueKnots[0] = new Point(0, 0);
@@ -94,17 +100,20 @@ public class SampleFilters {
         blueKnots[2] = new Point(255, 255);
         // Check whether output is null or not.
         Filter filter = new Filter();
-        filter.addSubFilter(new ToneCurveSubFilter(null, null, null, blueKnots));
+        filter.addSubFilter(new ToneCurveSubfilter(null, null, null, blueKnots));
         return filter;
     }
 
-    public static Filter getNightWhisperFilter(){
-        Point[] RGBKnots, redKnots, greenKnots, blueKnots;
+    public static Filter getNightWhisperFilter() {
+        Point[] rgbKnots;
+        Point[] redKnots;
+        Point[] greenKnots;
+        Point[] blueKnots;
 
-        RGBKnots = new Point[3];
-        RGBKnots[0] = new Point(0, 0);
-        RGBKnots[1] = new Point(174, 109);
-        RGBKnots[2] = new Point(255, 255);
+        rgbKnots = new Point[3];
+        rgbKnots[0] = new Point(0, 0);
+        rgbKnots[1] = new Point(174, 109);
+        rgbKnots[2] = new Point(255, 255);
 
         redKnots = new Point[4];
         redKnots[0] = new Point(0, 0);
@@ -123,7 +132,7 @@ public class SampleFilters {
         blueKnots[2] = new Point(255, 255);
 
         Filter filter = new Filter();
-        filter.addSubFilter(new ToneCurveSubFilter(RGBKnots, redKnots, greenKnots, blueKnots));
+        filter.addSubFilter(new ToneCurveSubfilter(rgbKnots, redKnots, greenKnots, blueKnots));
         return filter;
     }
 }

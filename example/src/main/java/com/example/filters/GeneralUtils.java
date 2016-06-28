@@ -5,9 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 
 /**
- * Created by Varun on 30/06/15.
+ * @author Varun on 30/06/15.
  */
-public class GeneralUtils {
+public final class GeneralUtils {
+
+    private GeneralUtils() {
+    }
 
     public static Bitmap generateCircularBitmap(Bitmap input) {
 
@@ -17,8 +20,8 @@ public class GeneralUtils {
 
         final Path path = new Path();
         path.addCircle(
-                (float)(width / 2)
-                , (float)(height / 2)
+                (float) (width / 2)
+                , (float) (height / 2)
                 , (float) Math.min(width, (height / 2))
                 , Path.Direction.CCW
         );
