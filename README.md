@@ -1,5 +1,8 @@
 # PhotoFiltersSDK
 
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AndroidPhotoFilters-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3703)
+
 PhotoFiltersSDK aims to provide fast, powerful and flexible image processing instrument for creating awesome effects on any image media. 
 
 Library supports OS on API 15 and above.
@@ -20,7 +23,7 @@ Library also comes with inbuilt Sample Filters (Refer [SampleFitlers.java](photo
 
 ```java
 Filter fooFilter = SampleFilters.getBlueMessFilter();
-Bitmap outputImage = fooFilter.process(inputImage);
+Bitmap outputImage = fooFilter.processFilter(inputImage);
 ```
 
 ## Implementation
@@ -31,7 +34,7 @@ Simply add Dependency on artifact in your `build.gradle` :
 
 ```gradle
 dependencies {
-    compile 'com.github.zomato:androidphotofilters:1.0.1'
+    compile 'com.github.zomato:androidphotofilters:1.0.2'
     ...
 ```
 
@@ -67,7 +70,7 @@ then
 Filter myFilter = new Filter();
 myFilter.addSubFilter(new BrightnessSubFilter(30));
 myFilter.addSubFilter(new ContrastSubFilter(1.1f));
-Bitmap outputImage = myFilter.process(inputImage);
+Bitmap outputImage = myFilter.processFilter(inputImage);
 ```
 
 Above code snippet will give you outputImage with increased brightness and contrast. You can further refer [example project](example).
@@ -91,7 +94,7 @@ rgbKnots[1] = new Point(175, 139);
 rgbKnots[2] = new Point(255, 255);
        
 myFilter.addSubFilter(new ToneCurveSubfilter(rgbKnots, null, null, null));
-Bitmap outputImage = myFilter.process(inputImage);
+Bitmap outputImage = myFilter.processFilter(inputImage);
 ```
 
 The results are nearly same as we would see in photoshop and other tools. We can also specify knots for Red, Green and Blue channels (in the ToneCurveSubfilter's constructor).
@@ -102,7 +105,7 @@ This fitler can be used to tweak color saturation of an image. Here is the examp
 ```java
 Filter myFilter = new Filter();
 myFilter.addSubFilter(new SaturationSubfilter(1.3f));
-Bitmap outputImage = myFilter.process(inputImage);
+Bitmap outputImage = myFilter.processFilter(inputImage);
 ```
 
 SaturationSubfilter takes float as an argument and has no effect for value 1.
@@ -113,7 +116,7 @@ Increases the specified red, green and blue values for each pixel in an image.
 ```java
 Filter myFilter = new Filter();
 myFilter.addSubFilter(new ColorOverlaySubfilter(100, .2f, .2f, .0f));
-Bitmap outputImage = myFilter.process(inputImage);
+Bitmap outputImage = myFilter.processFilter(inputImage);
 ```
 
 ### <a name="contrast"></a>ContrastSubfilter
@@ -122,7 +125,7 @@ To change the contrast levels of an image use this filter :
 ```java
 Filter myFilter = new Filter();
 myFilter.addSubFilter(new ContrastSubfilter(1.2f));
-Bitmap outputImage = myFilter.process(inputImage);
+Bitmap outputImage = myFilter.processFilter(inputImage);
 ```
 
 ContrastSubfilter takes float as an argument where value 1 has no effect on the image.
@@ -133,7 +136,7 @@ As the name suggest, this filter is used for changing brightness levels :
 ```java
 Filter myFilter = new Filter();
 myFilter.addSubFilter(new BrightnessSubfilter(30));
-Bitmap ouputImage = myFilter.process(inputImage);
+Bitmap ouputImage = myFilter.processFilter(inputImage);
 ```
 BrightnessSubfilter takes int as an argument where value 0 has no effect. Negative values can be used to decrease brightness of the image.
 
@@ -143,10 +146,18 @@ This filter can be used to put vignette effect on the image.
 ```java
 Filter myFilter = new Filter();
 myFilter.addSubFilter(new VignetteSubfilter(context, 100));
-Bitmap outputImage = myFilter.process(inputImage);
+Bitmap outputImage = myFilter.processFilter(inputImage);
 ```
 
 VignetteSubfilter takes int as an argument whoes value ranges from 0-255, which defines intesity of the vignette effect.
+
+## Proguard
+If you are using proguard, consider adding the following to your proguard rules:
+
+```proguard
+-keep class com.zomato.photofilters.** {*;}
+-keepclassmembers  class com.zomato.photofilters.** {*;}
+```
 
 ## License
 This library falls under [Apache v2](LICENSE)
